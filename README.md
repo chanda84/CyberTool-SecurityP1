@@ -1,4 +1,4 @@
-# CyberTool-SecurityP1 / Guía rápida (Markdown)
+# SECURITYP1 — README / Guía rápida (Markdown)
 
 > Versión documentada de la herramienta **SecurityP1**.
 > Contiene estructura del proyecto, instalación, uso por CLI, uso de la TUI/UI, variables de entorno necesarias y resolución de problemas comunes.
@@ -7,6 +7,8 @@
 
 ## Índice
 
+- [SECURITYP1 — README / Guía rápida (Markdown)](#securityp1--readme--guía-rápida-markdown)
+  - [Índice](#índice)
   - [Resumen del proyecto](#resumen-del-proyecto)
   - [Estructura del repositorio](#estructura-del-repositorio)
   - [Requisitos e instalación](#requisitos-e-instalación)
@@ -38,7 +40,45 @@ SecurityP1 es una herramienta modular de línea de comandos (con TUI y API opcio
 
 ## Estructura del repositorio
 
-<img width="648" height="770" alt="image" src="https://github.com/user-attachments/assets/a9647025-ec4e-4a54-8902-e36fb0efb543" />
+(esta es la estructura que debe coincidir con tu proyecto)
+
+```
+SECURITYP1/
+│
+├── Docs/ # Documentación adicional (Ejercicios Guiados)
+│
+├── modules/ # Módulos principales de la herramienta
+│ ├── attack.py # Funciones ofensivas (escaneo de puertos, bruteforce, SQLi)
+│ ├── defend.py # Funciones defensivas (firewall, procesos, vuln scan)
+│ ├── filescan.py # Integración con FileScan.io
+│ ├── forensics.py # Funciones de análisis forense (hashes, memoria, logs)
+│ ├── guides.py # Guías y frameworks (OWASP, MITRE, NIST, CVE, etc.)
+│ ├── malware.py # Análisis de malware (strings, entropía, VT, YARA, etc.)
+│ ├── osint.py # Recolección de información (dominios, IPs, emails)
+│ ├── reporting.py # Generación de reportes y salidas en JSON/console
+│ └── vt.py # Integración con VirusTotal API
+│
+├── reports/ # Carpeta donde se guardan automáticamente todos los resultados
+│ ├── generate_report.py # Script auxiliar para consolidar reportes
+│ └── USAGE.md # Documentación de uso y ejemplos
+│
+├── scripts/ # Scripts auxiliares de pruebas
+│ └── create_test_data.ps1 # Script para generar archivos de prueba (seguros, no maliciosos)
+│
+├── test_data/ # Archivos de ejemplo para pruebas (NO maliciosos)
+│ ├── eicar_placeholder.com # Placeholder del EICAR (archivo inofensivo)
+│ ├── notepad_sample.exe # Binario de prueba (ejemplo de ejecutable legítimo)
+│ ├── random.bin # Archivo binario aleatorio para entropía
+│ └── wordlist.txt # Wordlist para pruebas de fuerza bruta
+│
+├── venv/ # Entorno virtual de Python
+│
+├── main.py # Script principal CLI (Command Line Interface)
+├── ui_web.py # Interfaz gráfica TUI/menú + API local con FastAPI
+├── strings.py # Script auxiliar para extracción de strings
+├── requirements.txt # Dependencias Python necesarias
+├── README.md # Documentación principal del proyecto
+```
 
 > **Nota:** `reports/` y `test_data/` son carpetas usadas por la herramienta; `reports/` se crea automáticamente si no existe.
 
@@ -60,8 +100,15 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-`requirements.txt` (ejemplo mínimo) debe incluir:
-<img width="1733" height="1001" alt="image" src="https://github.com/user-attachments/assets/81f29360-c771-4020-8813-f483a72cebf9" />
+`requirements.txt`:
+
+```
+rich
+requests
+fastapi
+uvicorn
+pyyaml
+```
 
 > Si no utilizarás la API, no es obligatorio `fastapi`/`uvicorn`. `rich` es usado para la TUI.
 
@@ -71,7 +118,7 @@ pip install -r requirements.txt
 
 * `FILESCAN_API_KEY` — clave para FileScan.io (modules/filescan.py).
 * `VT_API_KEY` — clave para VirusTotal (si usas integraciones vt.py).
-* `SHODAN_API_KEY`— clave para Shodan (si usas integraciones OSINT.py).
+* `SHODAN_API_KEY`— clave para Shodan (si usas integraciones Shodan se debe instanciar desde OSINT.py).
 * En Windows: para evitar problemas con caracteres Unicode en consola, ejecutar antes:
 
   ```powershell
@@ -86,8 +133,6 @@ pip install -r requirements.txt
 ## Cómo ejecutar — CLI (sin UI)
 
 Puedes ejecutar cualquier módulo directamente con `main.py`. Ejemplos:
-
-![option cli](https://github.com/user-attachments/assets/e15f5cc1-0536-457a-aba9-7709e48b57b3)
 
 ```bash
 # ayuda general
@@ -127,9 +172,6 @@ python main.py osint --email-leaks me@example.com
 ## Interfaz TUI / UI local
 
 Arranca la TUI / menú bonito (usa `rich`) y opcionalmente arranca la API local:
-
-![CyberTool](https://github.com/user-attachments/assets/32fc42ac-1157-441f-8532-fe652d3f2a9e)
-
 
 ```bash
 # arranca la TUI interactiva (también lanza API en background si ui_web.py lo configura)

@@ -1,0 +1,46 @@
+# Librerías de consola e interfaz
+rich>=13.7.0
+colorama>=0.4.6
+
+# API y servidor local
+fastapi>=0.115.0
+uvicorn>=0.30.0
+
+# Utilidades de análisis
+pefile>=2023.2.7
+yara-python>=4.5.0
+
+# OSINT y consultas externas
+shodan>=1.30.0
+python-whois>=0.9.3
+requests>=2.32.3
+
+# Generación de reportes
+reportlab>=4.2.2
+openpyxl>=3.1.5
+
+# Opcional: análisis avanzado (si piensas integrar más adelante)
+psutil>=6.0.0      # análisis de procesos en "defend"
+scapy>=2.6.0       # para análisis de red (futuro)
+
+# Nota: algunas dependencias (yara, clamscan, nmap, hydra, etc.) son herramientas del sistema y no se instalan con pip. Para ello se deben instalar paquetes del sistema (apt, brew, etc.).
+
+##Herramientas externas
+##Estas son dependencias del sistema que la herramienta puede llamar desde subprocess:
+
+#ClamAV (clamscan) → antivirus libre.
+sudo apt install clamav
+
+
+#Nmap → escaneo de red.
+sudo apt install nmap
+
+
+#Hydra → fuerza bruta.
+sudo apt install hydra
+
+
+#Binutils (objdump, strings, xxd) → análisis de binarios.
+sudo apt install binutils
+
+##YARA CLI (además de yara-python).
