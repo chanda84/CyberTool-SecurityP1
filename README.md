@@ -1,4 +1,4 @@
-# SECURITYP1 — README / Guía rápida (Markdown)
+# SECURITYP1 — README / Guía rápida
 
 > Versión documentada de la herramienta **SecurityP1**.
 > Contiene estructura del proyecto, instalación, uso por CLI, uso de la TUI/UI, variables de entorno necesarias y resolución de problemas comunes.
@@ -398,3 +398,4 @@ Las contribuciones que agreguen funcionalidades de análisis activo (explotació
 Al usar SecurityP1, el usuario acepta estas condiciones y declara que entiende los riesgos asociados.
 
 ---
+
